@@ -11,10 +11,10 @@ public class TestPorts {
   public static void main(String[] args) {
     String csv = JOptionPane.showInputDialog("Enter list of ports");
     Set<ServerSocket> sockets = new HashSet<>();
-    Arrays.stream(csv.split(",")).mapToInt(Integer::parseInt).forEach((x)->{
-      try{sockets.add(new ServerSocket(x));}catch(Exception e) {System.err.println("Unable to open port "+x);}
+    Arrays.stream(csv.split(",")).mapToInt(Integer::parseInt).forEach((x) -> {
+      try{sockets.add(new ServerSocket(x));} catch(Exception e) {System.err.println("Unable to open port " + x);}
     });
-    JOptionPane.showMessageDialog(null,"Servers listening on ports: "+String.join(",",sockets.stream().map(x->""+x.getLocalPort()).collect(Collectors.toList())));
+    JOptionPane.showMessageDialog(null, "Servers listening on ports: " + String.join(",", sockets.stream().map(x -> "" + x.getLocalPort()).collect(Collectors.toList())));
     sockets.stream().forEach(t -> {
       try {
         t.close();
